@@ -1,10 +1,18 @@
 '''
-The purpose of the Skycast class was to find the minimum number of clicks needed to surf through the list of all the channels provided, given also a list of blocked channels that will be skipped and the low and high channel numbers, which should be the range that the channels to surf through should be between.
+The purpose of the Skycast class was to find the minimum number of clicks needed to surf through
+the list of all the channels provided, given also a list of blocked channels that will be skipped
+and the low and high channel numbers, which should be the range that the channels to surf through should be between.
 '''
 def Skycast():
 
     '''
-    The purpose of the main was to read the input from the Skycast_input txt file. Since the text file will have each input structured in a 3-line format, i will have every first line as the saved for the low and high variables, every second line will be the list of blocked channels and every third will be the list of channels to surf through. After saving all the low_high_range, blocked channels and channels to surf through into the appropriate variables, these variables will be given through into the calc_clicks, which is given all the low_high values, blocked channel lists and channels to surf through for all the inputs, rather than just 1 test case input.
+    The purpose of the main was to read the input from the Skycast_input txt file. Since the text
+    file will have each input structured in a 3-line format, i will have every first line as the 
+    saved for the low and high variables, every second line will be the list of blocked channels 
+    and every third will be the list of channels to surf through. After saving all the low_high_range,
+    blocked channels and channels to surf through into the appropriate variables, these variables will 
+    be given through into the calc_clicks, which is given all the low_high values, blocked channel lists
+    and channels to surf through for all the inputs, rather than just 1 test case input.
     '''
     def main():
         fileInput = open("Skycast_input.txt","r")
@@ -22,7 +30,9 @@ def Skycast():
         blocked_list = []
         low_high_list = []
         
-        # loop to go through all the lines in the input, and every first line of the input is chosen as the line for the low and high setter, and every 2nd line is the blocked channel and the last is the actual channels to surf through.
+        # loop to go through all the lines in the input, and every first line of the input is chosen as 
+        #the line for the low and high setter, and every 2nd line is the blocked channel and the last is 
+        #the actual channels to surf through.
         for line in allLines:
             if(line_counter % 3 == 0):
                 num_range = line.strip().split()
@@ -51,7 +61,16 @@ def Skycast():
 
 
     '''
-    The purpose of this method was to go through each individual input given, where each input consists of 3 lines, 1 set of low and high, blocked channels and channels to surf through. For each of the low, and high, there is a check made to make sure the number is valid. Then, the values are converted to type integer and saved into the variables. Then, a check is made to make sure each value in the blocked list is not the low or high and then, each value is saved into the newly converted integer type array for blocked channels. Then, same thing is done for the list of channels to surf through, but if the value is invalid, then a RunTimeError is raised. Then, when the low_high, blocked list, and the channels list is converted to int, these values will be passed into the calc_score method, which will go through all the channels given. There is a for loop that loops through the total number of test cases, where each one has a set of low and high, blocked channels and channels to surf through.
+    The purpose of this method was to go through each individual input given, where each input consists 
+    of 3 lines, 1 set of low and high, blocked channels and channels to surf through. For each of the low, 
+    and high, there is a check made to make sure the number is valid. Then, the values are converted to type
+    integer and saved into the variables. Then, a check is made to make sure each value in the blocked list 
+    is not the low or high and then, each value is saved into the newly converted integer type array for blocked
+    channels. Then, same thing is done for the list of channels to surf through, but if the value is invalid, then
+    a RunTimeError is raised. Then, when the low_high, blocked list, and the channels list is converted to int, 
+    these values will be passed into the calc_score method, which will go through all the channels given. There 
+    is a for loop that loops through the total number of test cases, where each one has a set of low and high, 
+    blocked channels and channels to surf through.
     '''
     def calc_clicks(low_high_list,blocked_list,all_channels_lists):
         list_counter = 0
@@ -81,7 +100,18 @@ def Skycast():
 
 
     '''
-    This method had the purpose of going through all the channels that we are assigned to surf through. First, we check how many clicks are required for the very first channels. Then, we make sure the length of the channels list is more than 1, and if so, then we have a while loop that will go through all the channels in the list, and inside the loop, there is a condition that if the counter is 0, then it means that its the first number. For the best_solution method that will calculate the clicks, but it takes the previous channel, current channel and the next channel, and also the blocked list and low and high. If the counter is 0, this means that there is no previou channel, so that will be 0, then the current will be the current channel and follow will be the next channel. Then, the else means there was a previous, so the counter-1 will be the previous, in the array, counter will be current and counter+1 will be the next. Counter variable will also get incremented at the end of the loop to go through all the channels. Clicks gets incremented by the number of clicks gotten from the best_solution method, which calculates based on given prev, current adn following channel. Then, the output with the clicks will be printed.
+    This method had the purpose of going through all the channels that we are assigned to surf through. 
+    First, we check how many clicks are required for the very first channels. Then, we make sure the length 
+    of the channels list is more than 1, and if so, then we have a while loop that will go through all the 
+    channels in the list, and inside the loop, there is a condition that if the counter is 0, then it means 
+    that its the first number. For the best_solution method that will calculate the clicks, but it takes the
+    previous channel, current channel and the next channel, and also the blocked list and low and high. If the
+    counter is 0, this means that there is no previou channel, so that will be 0, then the current will be the
+    current channel and follow will be the next channel. Then, the else means there was a previous, so the 
+    counter-1 will be the previous, in the array, counter will be current and counter+1 will be the next. 
+    Counter variable will also get incremented at the end of the loop to go through all the channels. Clicks gets
+    incremented by the number of clicks gotten from the best_solution method, which calculates based on given prev, 
+    current and following channel. Then, the output with the clicks will be printed.
     '''
     def calc_score(nums_list,blocked_list,low,high,test_case_number):
         clicks = 0
@@ -104,7 +134,20 @@ def Skycast():
 
     
     '''
-    The purpose of the method below was to use the prev, current and next channels taken through the parameter, and calculate the total clicks for using the up button, down button, using the number pad, and finally the back button to go back to the last channel. if the current channel is equal to the next channel, then 0 will be returned since no clicks are made. Then, if there was no previous, then we cannot use the back channel, so that will be skipped, but if there is a previous, then a local_current variable, temporary variable representing the current channel, is set to the previous channel, and then total clicks are calculated in order for the previous channel to reach the follow channel. Then, there is a number pad clicks variable, which will bascially increment the clicks for each number pressed on the number pad. Then, there is a if/elif for if the current channel is smaller than the following, then the up clicks will get incremented and the local variable is incremented and the loop will go on until the current equals the following channel. Then, the elif is executed if the current is bigger than the follow, and if the high variable value is between the local current value and local_current + (number_clicks - 1), then the current will be set equal to the low, and the up_clicks will be incremented, and rest of the lines will be skipped by the "continue" in the if loop. Then, there is a tuple where the number of clicks for the up, down, back button and number pad will be saved in it. Then, I return the min of all of these values, with the condition that the minimum is not 0.
+    The purpose of the method below was to use the prev, current and next channels taken through the parameter,
+    and calculate the total clicks for using the up button, down button, using the number pad, and finally the back
+    button to go back to the last channel. if the current channel is equal to the next channel, then 0 will be returned
+    since no clicks are made. Then, if there was no previous, then we cannot use the back channel, so that will be 
+    skipped, but if there is a previous, then a local_current variable, temporary variable representing the current channel,
+    is set to the previous channel, and then total clicks are calculated in order for the previous channel to reach 
+    the follow channel. Then, there is a number pad clicks variable, which will bascially increment the clicks for each
+    number pressed on the number pad. Then, there is a if/elif for if the current channel is smaller than the following, 
+    then the up clicks will get incremented and the local variable is incremented and the loop will go on until the current
+    equals the following channel. Then, the elif is executed if the current is bigger than the follow, and if the high 
+    variable value is between the local current value and local_current + (number_clicks - 1), then the current will be
+    set equal to the low, and the up_clicks will be incremented, and rest of the lines will be skipped by the "continue"
+    in the if loop. Then, there is a tuple where the number of clicks for the up, down, back button and number pad will be
+    saved in it. Then, I return the min of all of these values, with the condition that the minimum is not 0.
     '''
     def best_solution(prev,current,follow,blocked_list,low,high):
         local_current = current
